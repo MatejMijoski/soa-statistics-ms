@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:' + os.environ.ge
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-class Achievements_Helper(db.Model):
+class AchievementsHelper(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     achievement_name = db.Column(db.String(120), nullable=False)
 
