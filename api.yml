@@ -33,7 +33,7 @@ paths:
           description: Return status
         400:
           description: Bad request
-  /score:
+  /filter/score:
     get:
       tags: [ UserScore]
       operationId: app.get_filtered_scores
@@ -47,6 +47,20 @@ paths:
           description: Return status
         400:
           description: Bad request     
+  /filter/product:
+    get:
+      tags: [ Product ]
+      operationId: app.get_filtered_products
+      summary: Get the products filtered by monthly/ yearly score.
+      parameters:
+        - $ref: '#/parameters/month'
+        - $ref: '#/parameteres/year'
+	- $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request    
 parameters:
   invoice_body:
     name: Invoice Body
