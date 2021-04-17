@@ -21,6 +21,94 @@ paths:
           description: Return status
         400:
           description: Bad request
+  /achievement/{user_id}
+    get:
+      tags: [ UserAchievments ]
+      operationId: app.get_achievement_user
+      summary: Get all achievements for a user.
+      parameters:
+        - $ref: '#/parameters/user_ID'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/score:
+    get:
+      tags: [ UserScore]
+      operationId: app.get_filtered_scores
+      summary: Get the users filtered by monthly/ yearly score.
+      parameters:
+        - $ref: '#/parameters/month'
+        - $ref: '#/parameteres/year'
+	- $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request     
+  /filter/product:
+    get:
+      tags: [ Product ]
+      operationId: app.get_filtered_products
+      summary: Get the products filtered by monthly/ yearly score.
+      parameters:
+        - $ref: '#/parameters/month'
+        - $ref: '#/parameteres/year'
+	- $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/score/month:
+    get:
+      tags: [MonthlyScore]
+      operationId: get_monthly_score
+      summary: Get the monthly scores filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/score/year:
+    get:
+      tags: [YearlyScore]
+      operationId: get_yearly_score
+      summary: Get the yearly scores filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/product/month:
+    get:
+      tags: [MonthlyProduct]
+      operationId: get_monthly_product
+      summary: Get the monthly product filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/product/year:
+    get:
+      tags: [YearlyProduct]
+      operationId: get_yearly_product
+      summary: Get the yearly product filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
 
 parameters:
   invoice_body:
@@ -34,7 +122,7 @@ parameters:
         - quantity
       properties:
         user_id:
-          type: integer
+          type: long
         type_of_product:
           type: string
         quantity:
