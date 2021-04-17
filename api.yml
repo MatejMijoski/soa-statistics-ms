@@ -60,7 +60,56 @@ paths:
         200:
           description: Return status
         400:
-          description: Bad request    
+          description: Bad request
+  /filter/score/month:
+    get:
+      tags: [MonthlyScore]
+      operationId: get_monthly_score
+      summary: Get the monthly scores filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/score/year:
+    get:
+      tags: [YearlyScore]
+      operationId: get_yearly_score
+      summary: Get the yearly scores filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/product/month:
+    get:
+      tags: [MonthlyProduct]
+      operationId: get_monthly_product
+      summary: Get the monthly product filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/product/year:
+    get:
+      tags: [YearlyProduct]
+      operationId: get_yearly_product
+      summary: Get the yearly product filtered by limit.
+      parameters:
+        - $ref: '#/parameteres/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+
 parameters:
   invoice_body:
     name: Invoice Body
