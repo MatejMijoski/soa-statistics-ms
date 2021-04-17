@@ -9,20 +9,33 @@ produces:
   - application/json
 basePath: "/api"
 paths:
-  /achievement/{achievement_id}:
-    get:
-      tags: [ Achievement ]
-      operationId: app.get_achievement_by_id
-      summary: Testing
+  /invoice:
+    post:
+      tags: [ NewInvoice ]
+      operationId: app.new_invoice
+      summary: Update counters with new invoice
       parameters:
-        - $ref: '#/parameters/achievement_id'
+        - $ref: '#/parameters/invoice_body'
       responses:
         200:
           description: Return status
+        400:
+          description: Bad request
+
 parameters:
-  achievement_id:
-    name: achievement_id
-    description: The id of the achievement
-    in: path
-    required: true
-    type: integer
+  invoice_body:
+    name: Invoice Body
+    description: New invoice body
+    in: body
+    schema:
+      required:
+        - user_id
+        - type_of_product
+        - quantity
+      properties:
+        user_id:
+          type: integer
+        type_of_product:
+          type: string
+        quantity:
+          type: integer
