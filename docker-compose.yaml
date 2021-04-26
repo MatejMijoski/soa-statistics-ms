@@ -1,0 +1,8 @@
+version: "3.2"
+
+services:
+  backend:
+    build: ./src
+    restart: always
+    ports:
+      - 5000:5000
