@@ -21,7 +21,7 @@ paths:
           description: Return status
         400:
           description: Bad request
-  /achievement/{user_id}
+  /achievement/{user_ID}:
     get:
       tags: [ UserAchievments ]
       operationId: app.get_achievement_user
@@ -33,97 +33,113 @@ paths:
           description: Return status
         400:
           description: Bad request
-  /filter/score:
+  /filter/score/year/{limit}:
     get:
-      tags: [ UserScore]
-      operationId: app.get_filtered_scores
-      summary: Get the users filtered by monthly/ yearly score.
-      parameters:
-        - $ref: '#/parameters/month'
-        - $ref: '#/parameteres/year'
-	- $ref: '#/parameteres/limit'
-      responses:
-        200:
-          description: Return status
-        400:
-          description: Bad request     
-  /filter/product:
-    get:
-      tags: [ Product ]
-      operationId: app.get_filtered_products
-      summary: Get the products filtered by monthly/ yearly score.
-      parameters:
-        - $ref: '#/parameters/month'
-        - $ref: '#/parameteres/year'
-	- $ref: '#/parameteres/limit'
-      responses:
-        200:
-          description: Return status
-        400:
-          description: Bad request
-  /filter/score/month:
-    get:
-      tags: [MonthlyScore]
-      operationId: get_monthly_score
-      summary: Get the monthly scores filtered by limit.
-      parameters:
-        - $ref: '#/parameteres/limit'
-      responses:
-        200:
-          description: Return status
-        400:
-          description: Bad request
-  /filter/score/year:
-    get:
-      tags: [YearlyScore]
-      operationId: get_yearly_score
+      tags: [ MonthlyProduct ]
+      operationId: app.get_yearly_score
       summary: Get the yearly scores filtered by limit.
       parameters:
-        - $ref: '#/parameteres/limit'
+        - $ref: '#/parameters/limit'
       responses:
         200:
           description: Return status
         400:
           description: Bad request
-  /filter/product/month:
+  /filter/score/month/{limit}:
+      get:
+        tags: [ MonthlyProduct ]
+        operationId: app.get_monthly_score
+        summary: Get the monthly score filtered by limit.
+        parameters:
+          - $ref: '#/parameters/limit'
+        responses:
+          200:
+            description: Return status
+          400:
+            description: Bad request
+  /filter/product/month/top/{limit}:
     get:
       tags: [MonthlyProduct]
-      operationId: get_monthly_product
-      summary: Get the monthly product filtered by limit.
+      operationId: app.get_top_monthly_products
+      summary: Get the monthly products filtered by limit.
       parameters:
-        - $ref: '#/parameteres/limit'
+        - $ref: '#/parameters/limit'
       responses:
         200:
           description: Return status
         400:
           description: Bad request
-  /filter/product/year:
+  /filter/product/month/end/{limit}:
+      get:
+        tags: [ MonthlyProduct ]
+        operationId: app.get_end_monthly_products
+        summary: Get the monthly products filtered by limit.
+        parameters:
+          - $ref: '#/parameters/limit'
+        responses:
+          200:
+            description: Return status
+          400:
+            description: Bad request
+  /filter/product/year/top/{limit}:
     get:
       tags: [YearlyProduct]
-      operationId: get_yearly_product
+      operationId: app.get_top_yearly_products
       summary: Get the yearly product filtered by limit.
       parameters:
-        - $ref: '#/parameteres/limit'
+        - $ref: '#/parameters/limit'
+      responses:
+        200:
+          description: Return status
+        400:
+          description: Bad request
+  /filter/product/year/end/{limit}:
+    get:
+      tags: [ YearlyProduct ]
+      operationId: app.get_end_yearly_products
+      summary: Get the least bought yearly product filtered by limit.
+      parameters:
+        - $ref: '#/parameters/limit'
       responses:
         200:
           description: Return status
         400:
           description: Bad request
 
+
 parameters:
   invoice_body:
-    name: Invoice Body
-    description: New invoice body
+    name: invoice_body
+    description: The body for a new Invoice
     in: body
     schema:
       required:
         - user_id
         - type_of_product
         - quantity
+        - product_id
       properties:
         user_id:
-          type: long
+          type: integer
+          description: Id of the user
         type_of_product:
           type: string
+          description: The type of the product that is purchased
         quantity:
           type: integer
+          description: The quantity that is purchased
+        product_id:
+          type: integer
+          description: The ID of the product
+  user_ID:
+    name: user_ID
+    description: The id of the user
+    in: path
+    required: true
+    type: integer
+  limit:
+    name: limit
+    description: The id of the user
+    in: path
+    required: true
+    type: integer

@@ -9,8 +9,14 @@ class ProductService:
         return self.product_repository.update_product_counter(invoice_body['product_id'],
                                                               invoice_body['quantity'])
 
-    def get_monthly_score(self, limit):
-        return self.product_repository.get_monthly_score(limit)
+    def get_top_monthly_products(self, limit):
+        return self.product_repository.get_top_monthly_products(limit)
 
-    def get_yearly_score(self, limit):
-        return self.product_repository.get_yearly_score(limit)
+    def get_end_monthly_products(self, limit):
+        return self.product_repository.get_end_monthly_products(limit)
+
+    def get_top_yearly_products(self, limit):
+        return self.product_repository.get_top_yearly_products(limit)
+
+    def get_end_yearly_products(self, limit):
+        return self.product_repository.get_end_yearly_products(limit)

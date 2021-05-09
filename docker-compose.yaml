@@ -1,8 +1,25 @@
-version: "3.2"
+version: '3.9'
 
 services:
-  backend:
-    build: ./src
-    restart: always
+
+  consul:
+    image: consul
+    container_name: consul
     ports:
-      - 5000:5000
+      - "8500:8500"
+
+  payments-api:
+    build:
+      context: .
+    image: statistics:0.0.1
+    container_name: statistics-service
+    ports:
+      - "5005:5000"
+
+  discounts:
+    build:
+      context: ../E_Bike_Shop_Discount_Microservice
+    image: discounts:0.0.1
+    container_name: discounts-service
+    ports:
+      - "5006:5000"

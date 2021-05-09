@@ -9,7 +9,7 @@ class AchievementHelper(db.Model):
 class Achievements(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)
-    achievement_id = db.Column(db.String(120), db.ForeignKey('achievement_helper.id'), nullable=False)
+    achievement_name = db.Column(db.String(120), nullable=False, default="")
 
 
 class AchievementsCounter(db.Model):
