@@ -1,25 +1,91 @@
-version: '3.9'
-
+version: '3.7'
 services:
-
   consul:
     image: consul
-    container_name: consul
     ports:
       - "8500:8500"
-
-  payments-api:
+  reserve:
     build:
-      context: .
-    image: statistics:0.0.1
-    container_name: statistics-service
+      context: ./Reserve-api/src
+    volumes:
+      - ./Reserve-api/src:/app
     ports:
-      - "5005:5000"
+      - 5001:5000
+  sc:
+    build:
+      context: ./soa-shopping-cart-ms
+    volumes:
+      - ./soa-shopping-cart-ms:/app
+    ports:
+      - 5002:5000
+  locations:
+    build:
+      context: ./Locations-API
+    volumes:
+      - ./Locations-API:/app
+    ports:
+      - 5003:5000
+
+  shipping:
+    build:
+      context: ./Shipping-microservice
+    volumes:
+      - ./Shipping-microservice:/app
+    ports:
+      - 5004:5000
+
+  payments:
+    build:
+      context: ./payments-api
+    volumes:
+      - ./payments-api:/workdir
+    ports:
+      - 5005:5000
 
   discounts:
     build:
-      context: ../E_Bike_Shop_Discount_Microservice
-    image: discounts:0.0.1
-    container_name: discounts-service
+      context: ./E_Bike_Shop_Discount_Microservice
+    volumes:
+      - ./E_Bike_Shop_Discount_Microservice:/app
     ports:
-      - "5006:5000"
+      - 5006:5000
+
+  invoices:
+    build:
+      context: ./soa-Invoices-MS
+    volumes:
+      - ./soa-Invoices-MS:/app
+    ports:
+      - 5007:5000
+
+  social:
+    build:
+      context: ./social-api
+    volumes:
+      - ./social-api:/app
+    ports:
+      - 5008:5000
+
+  inventory:
+    build:
+      context: ./inventory-ms
+    volumes:
+      - ./inventory-ms:/app
+    ports:
+      - 5009:5000
+
+  user:
+    build:
+      context: ./soa-user-ms
+    volumes:
+      - ./soa-user-ms:/app
+    ports:
+      - 5010:5000
+
+  statistics:
+    build:
+      context: ./soa-statistics-ms
+    volumes:
+      - ./soa-statistics-ms:/app
+    ports:
+      - 5012:5000

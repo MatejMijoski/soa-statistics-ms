@@ -65,7 +65,7 @@ def get_top_monthly_products(limit=5):
 
 # @has_role(['discount'])
 def get_end_monthly_products(limit=5):
-    return product_service.get_top_monthly_products(limit)
+    return product_service.get_end_monthly_products(limit)
 
 
 # @has_role(['discount'])
